@@ -17,29 +17,27 @@ public class StudentRestController {
     public StudentRestController(StudentInterface studentService){
         this.studentService = studentService;
     }
-
     @GetMapping
     public List<Student> getAllStudents(){
         return studentService.getAllStudent();
     }
-
-    @GetMapping("/{id}")
+    @GetMapping("/search/{id}")
     public Student getOneStudent(@PathVariable int id) {
         return studentService.getStudentById(id);
     }
-
-    @PostMapping
+    @GetMapping("/search")
+    public Student getOneStudentByName(@RequestParam("name") String name){
+        return studentService.getStudentByName(name);
+    }
+    @PostMapping("/create")
     public Student addStudent(@RequestBody Student newStudent) {
         return studentService.createStudent(newStudent);
     }
-
-
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/update")
     public Student updateStudent(@PathVariable int id, @RequestBody Student updatedStudent) {
         return studentService.updateStudentById(id,updatedStudent);
     }
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public Void deleteStudent(@PathVariable int id) {
         return studentService.deleteStudentById(id);
     }

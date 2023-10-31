@@ -29,6 +29,16 @@ public class StudentServicesFrench implements StudentInterface{
     }
 
     @Override
+    public Student getStudentByName(String name){
+        for (Student student : listStudent) {
+            if (student.getFirstname().equals(name) || student.getLastname().equals(name)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Student createStudent(Student newStudent) {
         int newId = listStudent.stream().mapToInt(Student::getId).max().orElse(0) + 1;
         Student studentToAdd = new Student(newStudent.getFirstname(), newStudent.getLastname(), newStudent.getAge(), newId);

@@ -35,30 +35,29 @@
         -->
     </div>
 </nav>
+<div class="d-flex justify-content-center">
+    <h2>Création d'un Etudiant</h2>
 
-<table class="table" th:if="${!listStudent.isEmpty()}">
+</div>
 
-    <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody >
-        <tr th:each="student: ${listStudent}">
-            <td th:text="${student.getId()}"></td>
-            <td th:text="${student.getFirstname()}"></td>
-            <td th:text="${student.getLastname()}"></td>
-            <td>
-                <a th:href="@{/student(name=${student.getFirstname()})}" type="button" class="btn btn-outline-primary ">Details</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<h2 th:if="${listStudent.isEmpty()}" class="d-flex justify-content-center align-items-center">
-    La liste des étudiant est vide
-</h2>
+<div class="d-flex justify-content-center">
+    <form th:action="@{/student/create}" th:object="${studentSubmit}"  method="post">
+        <div class="form-group">
+            <label for="firstname">FirstName</label>
+            <input id="firstname" class="form-control" th:field="*{firstname}" type="text" placeholder="prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="lastname">LastName</label>
+            <input id="lastname" class="form-control" th:field="*{lastname}" type="text" placeholder="nom" required>
+        </div>
+        <div class="form-group ">
+            <label for="age">Age</label>
+            <input id="age" class="form-control" th:field="*{age}" type="number" placeholder="age" required>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-success">Créer</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <a class="navbar-brand" th:href="@{/}">Student</a>
 
 
@@ -22,7 +22,11 @@
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/student/list}">Liste d'étudiant</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/student/form}">Ajout d'un étudiant</a>
+            </li>
         </ul>
+
         <!--
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

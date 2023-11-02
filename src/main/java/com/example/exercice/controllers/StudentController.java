@@ -25,20 +25,16 @@ public class StudentController {
     }
 
     @PostMapping("/student/create")
-    public String studentForm(@ModelAttribute("studentSubmit") Student student){
-        System.out.println(student);
-
+    public String studentSubmitForm(@ModelAttribute("studentSubmit") Student student){
         studentService.createStudent(student);
 
-        return "redirect:student/list";
+        return "redirect:/student/list";
     }
 
     @GetMapping("/student/list")
     public String studentList(Model model){
         List<Student> listStudent =  studentService.getAllStudent();
-        Student student = new Student();
         model.addAttribute("listStudent", listStudent);
-        model.addAttribute("studentSubmit", student);
 
         return "student/list";
     }
@@ -50,6 +46,12 @@ public class StudentController {
         model.addAttribute("studentWant", studentWant);
 
         return "student/details";
+    }
+    @GetMapping("/student/form")
+    public String studentForm(Model model){
+        Student student = new Student();
+        model.addAttribute("studentSubmit", student);
+        return "student/form";
     }
 
 }

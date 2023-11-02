@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <a class="navbar-brand" th:href="@{/}">Student</a>
 
 
@@ -22,7 +22,11 @@
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/student/list}">Liste d'étudiant</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/student/form}">Ajout d'un étudiant</a>
+            </li>
         </ul>
+
         <!--
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -31,6 +35,26 @@
         -->
     </div>
 </nav>
+
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <img src="https://img.freepik.com/free-photo/young-man-student-with-notebooks-showing-thumb-up-approval-smiling-satisfied-blue-studio-background_1258-65597.jpg?w=1480&t=st=1698934216~exp=1698934816~hmac=1f000a2c0f992759714ff9b740b8227ca74a3713cff3e3a4882f16df02775e5c" class="card-img-top" alt="photo of student ">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <p>Id:</p> <p th:text="${studentWant.getId()}"></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <p>FirstName:</p> <p th:text="${studentWant.getFirstname()}"></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <p>LastName:</p> <p th:text="${studentWant.getLastname()}"></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <p>Age:</p> <p th:text="${studentWant.getAge()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

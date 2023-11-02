@@ -3,15 +3,12 @@ package com.example.exercice.services;
 import com.example.exercice.models.Student;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StudentServicesFrench implements StudentInterface{
-
-    Student student1 = new Student("John", "Smith", 9, 1);
-    Student student2 = new Student("Elena", "Smith", 12, 2);
-    Student student3 = new Student("David", "Smith", 41, 3);
-    List<Student> listStudent = List.of(student1,student2,student3);
+    List<Student> listStudent = new ArrayList<>();
 
     @Override
     public List<Student> getAllStudent(){
@@ -43,6 +40,7 @@ public class StudentServicesFrench implements StudentInterface{
         int newId = listStudent.stream().mapToInt(Student::getId).max().orElse(0) + 1;
         Student studentToAdd = new Student(newStudent.getFirstname(), newStudent.getLastname(), newStudent.getAge(), newId);
         listStudent.add(studentToAdd);
+        System.out.println(listStudent);
         return studentToAdd;
     }
 

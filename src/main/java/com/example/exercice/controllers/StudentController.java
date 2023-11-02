@@ -1,0 +1,55 @@
+package com.example.exercice.controllers;
+
+import com.example.exercice.models.Student;
+import com.example.exercice.services.StudentInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+public class StudentController {
+
+    private final StudentInterface studentService;
+
+    @Autowired
+    public StudentController(StudentInterface studentService) {
+        this.studentService = studentService;
+    }
+
+    @GetMapping
+    public String home(){
+        return "home";
+    }
+
+    @PostMapping("/student/create")
+    public String studentForm(@ModelAttribute("studentSubmit") Student student){
+        System.out.println(student);
+
+        studentService.createStudent(student);
+
+        return "redirect:student/list";
+    }
+
+    @GetMapping("/student/list")
+    public String studentList(Model model){
+        List<Student> listStudent =  studentService.getAllStudent();
+        Student student = new Student();
+        model.addAttribute("listStudent", listStudent);
+        model.addAttribute("studentSubmit", student);
+
+        return "student/list";
+    }
+
+    @GetMapping("/student")
+    public String studentDetails(@RequestParam String name, Model model){
+        Student studentWant = studentService.getStudentByName(name);
+
+        model.addAttribute("studentWant", studentWant);
+
+        return "student/details";
+    }
+
+}
